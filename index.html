@@ -13,51 +13,51 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       min-height: 100vh;
     }
 
     .container {
-      background: rgba(15, 15, 40, 0.9);
-      padding: 30px 25px;
+      background: rgba(15, 15, 40, 0.95);
+      padding: 35px 25px;
       border-radius: 15px;
       box-shadow: 0px 0px 25px rgba(0, 255, 255, 0.3);
-      width: 350px;
+      width: 360px;
       text-align: center;
     }
 
     .logo {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
     .logo img {
       width: 70px;
       height: 70px;
       border-radius: 50%;
+      border: 2px solid #06b6d4;
     }
 
     h2 {
-      font-size: 22px;
+      font-size: 24px;
       background: linear-gradient(90deg, #06b6d4, #ec4899);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 5px;
+      margin: 10px 0;
     }
 
     p {
-      font-size: 13px;
-      color: #aaa;
-      margin-bottom: 20px;
+      font-size: 14px;
+      color: #bbb;
+      margin-bottom: 25px;
     }
 
     input {
       width: 100%;
       padding: 12px;
-      margin: 10px 0;
+      margin: 8px 0;
       border: none;
       border-radius: 8px;
       outline: none;
-      font-size: 14px;
+      font-size: 15px;
     }
 
     input[type="text"], input[type="password"] {
@@ -72,6 +72,7 @@
       gap: 6px;
       margin: 10px 0;
       cursor: pointer;
+      color: #aaa;
     }
 
     .btn {
@@ -81,7 +82,8 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 15px;
+      font-size: 16px;
+      font-weight: bold;
       color: white;
       background: linear-gradient(90deg, #06b6d4, #3b82f6);
       transition: 0.3s;
@@ -102,7 +104,10 @@
       color: #fff;
       background: transparent;
       transition: 0.3s;
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       text-decoration: none;
     }
 
@@ -110,41 +115,22 @@
       background: #3b82f6;
     }
 
-    .social {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .social a {
-      font-size: 20px;
-      text-decoration: none;
-      color: white;
-      background: #1e1e3a;
-      padding: 10px;
-      border-radius: 50%;
-      transition: 0.3s;
-    }
-
-    .social a:hover {
-      background: #3b82f6;
+    .error {
+      color: #f87171;
+      font-size: 14px;
+      margin-top: 12px;
+      font-weight: bold;
     }
 
     .bottom-text {
       margin-top: 20px;
       font-size: 13px;
       color: #ccc;
+      line-height: 1.4;
     }
 
     .highlight {
       color: #06b6d4;
-    }
-
-    .error {
-      color: #f87171;
-      font-size: 13px;
-      margin-top: 10px;
     }
   </style>
 </head>
@@ -155,7 +141,7 @@
       <img src="https://via.placeholder.com/70" alt="Logo">
     </div>
     <h2>LWA PORTAL</h2>
-    <p>SECURE & SMART ACCESS</p>
+    <p>Secure & Smart Access</p>
 
     <form onsubmit="return checkLogin(event)">
       <input type="text" id="username" placeholder="Enter Username" required>
@@ -165,16 +151,14 @@
       <div id="error" class="error"></div>
     </form>
 
-    <!-- Links -->
-    <a href="https://tiktok.com" target="_blank" class="other-btn">DEMO ACCESS</a>
-    <a href="https://wa.me/+923342002756" target="_blank" class="other-btn">PURCHASE ACCESS</a>
-    <a href="#" class="other-btn">WHATSAPP GROUP</a>
+    <!-- Extra Buttons -->
+    <a href="demo.html" class="other-btn">🔍 DEMO ACCESS</a>
+    <a href="https://wa.me/+923342002756" target="_blank" class="other-btn">💳 PURCHASE ACCESS</a>
 
-    <div class="social">
-      <a href="#">T</a>
-      <a href="#">W</a>
-      <a href="#">S</a>
-    </div>
+    <!-- Social Media Buttons -->
+    <a href="https://t.me/yourchannel" target="_blank" class="other-btn">📢 Telegram</a>
+    <a href="https://wa.me/923342002756" target="_blank" class="other-btn">💬 WhatsApp</a>
+    <a href="https://facebook.com/yourpage" target="_blank" class="other-btn">📘 Facebook</a>
 
     <div class="bottom-text">
       Our team is <span class="highlight">focused</span> on making the best application for our users.
@@ -184,15 +168,14 @@
   <script>
     function checkLogin(event) {
       event.preventDefault();
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
+      const user = document.getElementById("username").value.trim();
+      const pass = document.getElementById("password").value.trim();
       const errorBox = document.getElementById("error");
 
       if (user === "Awais" && pass === "wasi786") {
-        // Redirect to demo.html after successful login
-        window.location.href = "demo.html";
+        window.location.href = "dashboard.html"; // Redirect to dashboard.html
       } else {
-        errorBox.textContent = "Invalid Username or Password!";
+        errorBox.textContent = "❌ Invalid Username or Password!";
       }
     }
   </script>
