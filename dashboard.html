@@ -26,6 +26,7 @@
       justify-content: space-between;
       align-items: center;
       transition: background 0.5s, color 0.5s;
+      position: relative;
     }
 
     .theme-toggle {
@@ -35,75 +36,91 @@
       cursor: pointer;
       font-weight: bold;
       transition: background 0.3s;
+      margin-right: 10px;
     }
 
-    /* Animated Garland */
-    .garland {
-      width: 100%;
-      height: 12px;
-      margin-top: -8px;
-      margin-bottom: 25px;
-      background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet, red);
-      background-size: 400%;
-      animation: moveColors 6s linear infinite;
-      border-radius: 0 0 50% 50%; /* Thoda curve jaisa look */
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    /* 3 Dot Menu */
+    .menu {
+      position: relative;
+      display: inline-block;
     }
 
-    @keyframes moveColors {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 400% 50%; }
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-      margin: 40px;
-      width: 90%;
-      max-width: 1200px;
-    }
-
-    .card {
-      border-radius: 16px;
-      padding: 25px;
-      text-align: center;
-      transition: transform 0.3s, background 0.5s, color 0.5s;
-      box-shadow: 0px 8px 25px rgba(0,0,0,0.3);
-    }
-
-    .card:hover {
-      transform: translateY(-8px) scale(1.03);
-    }
-
-    .card img {
-      width: 120px;
-      height: auto;
-      margin-bottom: 15px;
-    }
-
-    .card h2 {
+    .menu-btn {
       font-size: 22px;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      font-size: 18px;
-      margin-bottom: 18px;
-    }
-
-    .card button {
-      padding: 12px 18px;
+      background: none;
       border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: inherit;
+    }
+
+    .menu-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 40px;
+      background: white;
+      min-width: 150px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+      z-index: 999;
+    }
+
+    .menu-content a {
+      display: block;
+      padding: 12px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .menu-content a:hover {
+      background: #f0f0f0;
+    }
+
+    .menu.show .menu-content {
+      display: block;
+    }
+
+    /* Reviews Popup */
+    .reviews-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 8px 25px rgba(0,0,0,0.5);
+      width: 90%;
+      max-width: 400px;
+      z-index: 1000;
+    }
+
+    .reviews-popup h2 {
+      margin-top: 0;
+    }
+
+    .review {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .review strong {
+      display: block;
+      color: #2e7d32;
+    }
+
+    .close-btn {
+      margin-top: 15px;
+      padding: 10px 15px;
+      border: none;
+      background: #4CAF50;
       color: white;
       font-weight: bold;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .card button:hover {
-      transform: scale(1.08);
     }
 
     /* Light Theme */
@@ -166,12 +183,37 @@
     body.dark .card button:hover {
       background: #45a049;
     }
+
+    body.dark .menu-content {
+      background: #333;
+    }
+
+    body.dark .menu-content a {
+      color: #fff;
+    }
+
+    body.dark .menu-content a:hover {
+      background: #444;
+    }
+
+    body.dark .reviews-popup {
+      background: #222;
+      color: white;
+    }
   </style>
 </head>
 <body class="light">
   <header>
     <span>Cx Carding Store</span>
-    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+    <div style="display: flex; align-items: center;">
+      <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+      <div class="menu" id="menu">
+        <button class="menu-btn" onclick="toggleMenu()">⋮</button>
+        <div class="menu-content">
+          <a href="#" onclick="openReviews()">Reviews</a>
+        </div>
+      </div>
+    </div>
   </header>
 
   <!-- Animated Garland -->
@@ -207,9 +249,17 @@
     </div>
   </div>
 
-  <!-- Tidio Live Chat -->
-  <script src="" async></script> 
+  <!-- Reviews Popup -->
+  <div class="reviews-popup" id="reviewsPopup">
+    <h2>Customer Reviews</h2>
+    <div class="review"><strong>Ali:</strong> Bhut acha Kam ha</div>
+    <div class="review"><strong>Awanking:</strong> Bhai mana pack Lia, Thora late Mila lakin mil gya</div>
+    <div class="review"><strong>Ahmedzohhh:</strong> Bhai ya trusted ha ya ni koi btya?</div>
+    <div class="review"><strong>Making:</strong> Bhut achi deal hoi, payment bhi Binance par di</div>
+    <button class="close-btn" onclick="closeReviews()">Close</button>
+  </div>
 
+  <!-- JS -->
   <script>
     function toggleTheme() {
       let body = document.body;
@@ -225,6 +275,29 @@
         button.textContent = "🌙 Dark Mode";
       }
     }
+
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("show");
+    }
+
+    function openReviews() {
+      document.getElementById("reviewsPopup").style.display = "block";
+      document.getElementById("menu").classList.remove("show");
+    }
+
+    function closeReviews() {
+      document.getElementById("reviewsPopup").style.display = "none";
+    }
+
+    // Close menu when clicking outside
+    window.onclick = function(e) {
+      if (!e.target.matches('.menu-btn')) {
+        let menu = document.getElementById("menu");
+        if (menu.classList.contains('show')) {
+          menu.classList.remove('show');
+        }
+      }
+    }
   </script>
 </body>
-</html>
+  </html>
