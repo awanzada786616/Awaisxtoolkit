@@ -18,15 +18,13 @@
     header {
       width: 100%;
       padding: 20px;
-      text-align: center;
-      font-size: 28px;
+      font-size: 24px;
       font-weight: bold;
-      box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
       transition: background 0.5s, color 0.5s;
-      position: relative;
     }
 
     .theme-toggle {
@@ -35,16 +33,13 @@
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
-      transition: background 0.3s;
       margin-right: 10px;
     }
 
-    /* 3 Dot Menu */
+    /* Menu */
     .menu {
       position: relative;
-      display: inline-block;
     }
-
     .menu-btn {
       font-size: 22px;
       background: none;
@@ -53,7 +48,6 @@
       padding: 8px;
       color: inherit;
     }
-
     .menu-content {
       display: none;
       position: absolute;
@@ -65,7 +59,6 @@
       box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
       z-index: 999;
     }
-
     .menu-content a {
       display: block;
       padding: 12px;
@@ -73,16 +66,75 @@
       color: #333;
       font-weight: bold;
     }
-
     .menu-content a:hover {
       background: #f0f0f0;
     }
-
     .menu.show .menu-content {
       display: block;
     }
 
-    /* Reviews Popup */
+    /* Garland */
+    .garland {
+      width: 100%;
+      padding: 15px 0;
+      text-align: center;
+    }
+    .light-bulb {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      margin: 0 6px;
+      border-radius: 50%;
+      animation: glow 1.5s infinite alternate;
+    }
+    .light-bulb:nth-child(1) { background: red; animation-delay: 0s; }
+    .light-bulb:nth-child(2) { background: orange; animation-delay: 0.2s; }
+    .light-bulb:nth-child(3) { background: yellow; animation-delay: 0.4s; }
+    .light-bulb:nth-child(4) { background: green; animation-delay: 0.6s; }
+    .light-bulb:nth-child(5) { background: blue; animation-delay: 0.8s; }
+    .light-bulb:nth-child(6) { background: indigo; animation-delay: 1s; }
+    .light-bulb:nth-child(7) { background: violet; animation-delay: 1.2s; }
+
+    @keyframes glow {
+      from { opacity: 0.3; transform: scale(0.9); }
+      to   { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* Container + Cards */
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      width: 100%;
+      max-width: 1000px;
+    }
+    .card {
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    .card button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+    }
+
+    /* Reviews */
     .reviews-popup {
       display: none;
       position: fixed;
@@ -97,21 +149,13 @@
       max-width: 400px;
       z-index: 1000;
     }
-
-    .reviews-popup h2 {
-      margin-top: 0;
-    }
-
     .review {
       padding: 10px;
       border-bottom: 1px solid #ccc;
     }
-
     .review strong {
-      display: block;
       color: #2e7d32;
     }
-
     .close-btn {
       margin-top: 15px;
       padding: 10px 15px;
@@ -123,89 +167,30 @@
       cursor: pointer;
     }
 
-    /* Light Theme */
-    body.light {
-      background: #f4f4f4;
-      color: #333;
-    }
+    /* Themes */
+    body.light { background: #f4f4f4; color: #333; }
+    body.light header { background: linear-gradient(135deg, #4CAF50, #2e7d32); color: white; }
+    body.light .theme-toggle { background: white; color: #333; border: 1px solid #ccc; }
+    body.light .card { background: white; color: #333; }
+    body.light .card button { background: #4CAF50; }
+    body.light .card button:hover { background: #45a049; }
 
-    body.light header {
-      background: linear-gradient(135deg, #4CAF50, #2e7d32);
-      color: white;
-    }
-
-    body.light .theme-toggle {
-      background: white;
-      color: #333;
-      border: 1px solid #ccc;
-    }
-
-    body.light .card {
-      background: #fff;
-      color: #333;
-    }
-
-    body.light .card button {
-      background: #4CAF50;
-    }
-
-    body.light .card button:hover {
-      background: #45a049;
-    }
-
-    /* Dark Theme */
-    body.dark {
-      background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
-      color: #fff;
-    }
-
-    body.dark header {
-      background: linear-gradient(135deg, #222, #444);
-      color: #fff;
-    }
-
-    body.dark .theme-toggle {
-      background: #444;
-      color: #fff;
-    }
-
-    body.dark .card {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-
-    body.dark .card button {
-      background: #4CAF50;
-    }
-
-    body.dark .card button:hover {
-      background: #45a049;
-    }
-
-    body.dark .menu-content {
-      background: #333;
-    }
-
-    body.dark .menu-content a {
-      color: #fff;
-    }
-
-    body.dark .menu-content a:hover {
-      background: #444;
-    }
-
-    body.dark .reviews-popup {
-      background: #222;
-      color: white;
-    }
+    body.dark { background: #1e1e1e; color: white; }
+    body.dark header { background: linear-gradient(135deg, #222, #444); color: white; }
+    body.dark .theme-toggle { background: #444; color: white; }
+    body.dark .card { background: rgba(255,255,255,0.08); color: white; border: 1px solid rgba(255,255,255,0.2); }
+    body.dark .card button { background: #4CAF50; }
+    body.dark .card button:hover { background: #45a049; }
+    body.dark .menu-content { background: #333; }
+    body.dark .menu-content a { color: white; }
+    body.dark .menu-content a:hover { background: #444; }
+    body.dark .reviews-popup { background: #222; color: white; }
   </style>
 </head>
 <body class="light">
   <header>
     <span>Cx Carding Store</span>
-    <div style="display: flex; align-items: center;">
+    <div style="display:flex; align-items:center;">
       <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
       <div class="menu" id="menu">
         <button class="menu-btn" onclick="toggleMenu()">⋮</button>
@@ -216,9 +201,18 @@
     </div>
   </header>
 
-  <!-- Animated Garland -->
-  <div class="garland"></div>
+  <!-- Garland -->
+  <div class="garland">
+    <span class="light-bulb"></span>
+    <span class="light-bulb"></span>
+    <span class="light-bulb"></span>
+    <span class="light-bulb"></span>
+    <span class="light-bulb"></span>
+    <span class="light-bulb"></span>
+    <span class="light-bulb"></span>
+  </div>
 
+  <!-- UC Packs -->
   <div class="container">
     <div class="card">
       <img src="https://i.postimg.cc/LsCffznL/images-2-10.png" alt="UC Pack">
@@ -249,7 +243,7 @@
     </div>
   </div>
 
-  <!-- Reviews Popup -->
+  <!-- Reviews -->
   <div class="reviews-popup" id="reviewsPopup">
     <h2>Customer Reviews</h2>
     <div class="review"><strong>Ali:</strong> Bhut acha Kam ha</div>
@@ -259,19 +253,15 @@
     <button class="close-btn" onclick="closeReviews()">Close</button>
   </div>
 
-  <!-- JS -->
   <script>
     function toggleTheme() {
       let body = document.body;
       let button = document.querySelector(".theme-toggle");
-
       if (body.classList.contains("light")) {
-        body.classList.remove("light");
-        body.classList.add("dark");
+        body.classList.replace("light", "dark");
         button.textContent = "☀️ Light Mode";
       } else {
-        body.classList.remove("dark");
-        body.classList.add("light");
+        body.classList.replace("dark", "light");
         button.textContent = "🌙 Dark Mode";
       }
     }
@@ -289,7 +279,6 @@
       document.getElementById("reviewsPopup").style.display = "none";
     }
 
-    // Close menu when clicking outside
     window.onclick = function(e) {
       if (!e.target.matches('.menu-btn')) {
         let menu = document.getElementById("menu");
@@ -300,4 +289,4 @@
     }
   </script>
 </body>
-  </html>
+</html>
