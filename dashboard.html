@@ -21,10 +21,42 @@
       font-size: 24px;
       font-weight: bold;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
       box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
       transition: background 0.5s, color 0.5s;
+    }
+
+    .header-top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      font-weight: normal;
+      margin-top: 6px;
+      opacity: 0.9;
+    }
+
+    .balance-box {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.15);
+      padding: 8px 15px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .balance-box img {
+      width: 22px;
+      height: 22px;
+      margin-right: 8px;
     }
 
     .theme-toggle {
@@ -37,9 +69,7 @@
     }
 
     /* Menu */
-    .menu {
-      position: relative;
-    }
+    .menu { position: relative; }
     .menu-btn {
       font-size: 22px;
       background: none;
@@ -66,19 +96,11 @@
       color: #333;
       font-weight: bold;
     }
-    .menu-content a:hover {
-      background: #f0f0f0;
-    }
-    .menu.show .menu-content {
-      display: block;
-    }
+    .menu-content a:hover { background: #f0f0f0; }
+    .menu.show .menu-content { display: block; }
 
     /* Garland */
-    .garland {
-      width: 100%;
-      padding: 15px 0;
-      text-align: center;
-    }
+    .garland { width: 100%; padding: 15px 0; text-align: center; }
     .light-bulb {
       display: inline-block;
       width: 14px;
@@ -116,14 +138,8 @@
       box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
       transition: transform 0.3s;
     }
-    .card:hover {
-      transform: scale(1.05);
-    }
-    .card img {
-      width: 100px;
-      height: auto;
-      margin-bottom: 10px;
-    }
+    .card:hover { transform: scale(1.05); }
+    .card img { width: 100px; height: auto; margin-bottom: 10px; }
     .card button {
       margin-top: 10px;
       padding: 10px 15px;
@@ -149,13 +165,8 @@
       max-width: 400px;
       z-index: 1000;
     }
-    .review {
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-    }
-    .review strong {
-      color: #2e7d32;
-    }
+    .review { padding: 10px; border-bottom: 1px solid #ccc; }
+    .review strong { color: #2e7d32; }
     .close-btn {
       margin-top: 15px;
       padding: 10px 15px;
@@ -174,6 +185,7 @@
     body.light .card { background: white; color: #333; }
     body.light .card button { background: #4CAF50; }
     body.light .card button:hover { background: #45a049; }
+    body.light .balance-box { background: #fff; color: #333; border: 1px solid #ddd; }
 
     body.dark { background: #1e1e1e; color: white; }
     body.dark header { background: linear-gradient(135deg, #222, #444); color: white; }
@@ -185,19 +197,29 @@
     body.dark .menu-content a { color: white; }
     body.dark .menu-content a:hover { background: #444; }
     body.dark .reviews-popup { background: #222; color: white; }
+    body.dark .balance-box { background: #333; color: #fff; }
   </style>
 </head>
 <body class="light">
   <header>
-    <span>Cx Carding Store</span>
-    <div style="display:flex; align-items:center;">
-      <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
-      <div class="menu" id="menu">
-        <button class="menu-btn" onclick="toggleMenu()">⋮</button>
-        <div class="menu-content">
-          <a href="#" onclick="openReviews()">Reviews</a>
+    <div class="header-top">
+      <span>Cx Carding Store</span>
+      <div style="display:flex; align-items:center;">
+        <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+        <div class="menu" id="menu">
+          <button class="menu-btn" onclick="toggleMenu()">⋮</button>
+          <div class="menu-content">
+            <a href="#" onclick="openReviews()">Reviews</a>
+          </div>
         </div>
       </div>
+    </div>
+
+    <div class="subtitle">✨ Welcome to CxStore ✨</div>
+
+    <div class="balance-box">
+      <img src="https://cdn-icons-png.flaticon.com/512/2331/2331941.png" alt="Wallet">
+      <span>Your Balance: 0 PKR</span>
     </div>
   </header>
 
